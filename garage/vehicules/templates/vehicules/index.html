@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Garage Automobile</title>
+    <style>
+        body {
+            background-color: #f1e6f0; /* Couleur pastel rose clair */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #8a5dff; /* Violet pastel */
+            text-align: center;
+            padding: 20px;
+            background-color: #b8a2f7; /* Bleu pastel léger */
+            margin: 0;
+        }
+
+        a {
+            color: #6c4b9b; /* Violet foncé pastel */
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            display: inline-block;
+            margin: 20px;
+            background-color: #f7d7ff; /* Rose pastel */
+            border-radius: 8px;
+        }
+
+        a:hover {
+            background-color: #e0b0ff; /* Rose plus foncé en hover */
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #d0c9f9; /* Bleu pastel pour les en-têtes */
+            color: #6a4c9c; /* Violet pastel */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7f1fe; /* Rose pastel pour les lignes paires */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #e8e5f3; /* Bleu clair pastel pour les lignes impaires */
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenue au Garage Automobile</h1>
+    <a href="{% url 'ajouter_vehicule' %}">Ajouter un véhicule</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Marque</th>
+                <th>Date d'Achat</th>
+                <th>Nombre de Places</th>
+                <th>Description</th>
+                <th>Climatisation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicule in vehicules %}
+            <tr>
+                <td>{{ vehicule.marque }}</td>
+                <td>{{ vehicule.date_achat }}</td>
+                <td>{{ vehicule.nb_places }}</td>
+                <td>{{ vehicule.description }}</td>
+                <td>{% if vehicule.climatisation %}Oui{% else %}Non{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
